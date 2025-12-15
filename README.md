@@ -1,5 +1,5 @@
 # 📰 Premium Pulse
-App is live on: https://premium-pulse.onrender.com
+App is live on: https://premium-pulse.onrender.com<br>
 **Premium Pulse** is a cutting-edge news aggregator application built with **Next.js 15**, designed to deliver premium content from India's top news publications—**The Times of India Plus (TOI+)**, **The Indian Express Premium**, and **The Hindu Premium**—in a unified, distraction-free environment.
 
 ![Next.js](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)
