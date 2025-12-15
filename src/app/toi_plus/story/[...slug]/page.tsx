@@ -45,7 +45,7 @@ export default function StoryPage() {
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+          className="sticky top-4 z-50 mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
         >
           ← Go Back
         </button>

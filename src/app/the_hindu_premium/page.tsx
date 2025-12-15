@@ -32,9 +32,7 @@ export default function TheHinduMainFeed() {
     const isFetchingRef = useRef(false);
     const router = useRouter();
 
-    // Toggle State: 'default' (RSS) or 'latest' (Scraping)
-    const [feedType, setFeedType] = useState<"default" | "latest">("default");
-
+    // Toggle State: Removed, defaulting to 'latest' behavior
 
     // --- IntersectionObserver with prefetch buffer ---
     const lastItemRef = useCallback(
@@ -76,11 +74,6 @@ export default function TheHinduMainFeed() {
     // --- Fetch current page ---
     useEffect(() => {
         const fetchData = async () => {
-            // Reset check logic: if we switched feedType, we might need to force fetch even if page exists in store?
-            // Ideally store should differentiate or we clear store on switch.
-            // For now, let's assume store is cleared on unmount, but we should clear on toggle.
-            // We'll handle clearing in the toggle handler.
-
             if (pages[page]) {
                 isFetchingRef.current = false;
                 return;
@@ -91,9 +84,8 @@ export default function TheHinduMainFeed() {
                 const th_feed_url = `${the_hindu_premium_ep}`;
                 const th_feed_url_paged = `${th_feed_url}?page=${page}`;
 
-                // Add source param based on feedType
-                // default -> rss, latest -> latest
-                const source = feedType === "default" ? "rss" : "latest";
+                // Force source to 'latest' as per user request
+                const source = "latest";
 
                 const feed_url = `${api_endpoints.the_hindu.feed}?url=${encodeURIComponent(
                     th_feed_url_paged
@@ -142,9 +134,9 @@ export default function TheHinduMainFeed() {
         };
 
         fetchData();
-        // only re-run when page changes or feedType changes
+        // only re-run when page changes
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page, feedType]);
+    }, [page]);
 
     useEffect(() => {
         return () => {
@@ -156,7 +148,7 @@ export default function TheHinduMainFeed() {
             {/* Back Button */}
             <button
                 onClick={() => router.back()}
-                className="mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+                className="sticky top-4 z-50 mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
             >
                 ← Go Back
             </button>
@@ -164,37 +156,7 @@ export default function TheHinduMainFeed() {
                 {Publication.the_hindu_premium}
             </h2>
 
-            {/* Toggle Buttons */}
-            <div className="flex justify-center gap-4 mb-6">
-                <button
-                    onClick={() => {
-                        if (feedType !== "default") {
-                            setFeedType("default");
-                            reset(); // Clear store to reload
-                        }
-                    }}
-                    className={`px-4 py-2 rounded-full font-semibold transition-colors ${feedType === "default"
-                        ? "bg-red-600 text-white"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                        }`}
-                >
-                    Default
-                </button>
-                <button
-                    onClick={() => {
-                        if (feedType !== "latest") {
-                            setFeedType("latest");
-                            reset(); // Clear store to reload
-                        }
-                    }}
-                    className={`px-4 py-2 rounded-full font-semibold transition-colors ${feedType === "latest"
-                        ? "bg-red-600 text-white"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                        }`}
-                >
-                    Latest News
-                </button>
-            </div>
+            {/* Toggle Buttons Removed */}
             {items.map((item, idx) => {
                 const imageUrl = item.image ? `${item.image.src}` : null;
                 const isLast = idx === items.length - 1;

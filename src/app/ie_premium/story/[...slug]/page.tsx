@@ -88,7 +88,7 @@ export default function StoryPage() {
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+          className="sticky top-4 z-50 mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
         >
           ← Go Back
         </button>
@@ -121,10 +121,10 @@ export default function StoryPage() {
             <p className="text-sm text-gray-500 mb-6">
               {story_data.datePublished
                 ? new Date(story_data.datePublished).toLocaleString("en-IN", {
-                    timeZone: "Asia/Kolkata",
-                    dateStyle: "medium",
-                    timeStyle: "short",
-                  }) + " IST"
+                  timeZone: "Asia/Kolkata",
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                }) + " IST"
                 : ""}
             </p>
             <p className="text-gray-700 mb-6 italic">

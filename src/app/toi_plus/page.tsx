@@ -136,7 +136,7 @@ export default function ToiPlusMainFeed() {
       {/* Back Button */}
       <button
         onClick={() => router.back()}
-        className="mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+        className="sticky top-4 z-50 mb-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
       >
         ← Go Back
       </button>
@@ -168,9 +168,8 @@ export default function ToiPlusMainFeed() {
                       fill
                       unoptimized
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className={`rounded-lg transition-opacity duration-300 ${
-                        isLoaded ? "opacity-100" : "opacity-0"
-                      } ${fitMode[item.id] || "object-cover"}`}
+                      className={`rounded-lg transition-opacity duration-300 ${isLoaded ? "opacity-100" : "opacity-0"
+                        } ${fitMode[item.id] || "object-cover"}`}
                       onLoad={(e) => {
                         setLoaded(item.id);
                         const img = e.currentTarget as HTMLImageElement;
